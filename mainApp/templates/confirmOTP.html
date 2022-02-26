@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+<title>MyShop | Password</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="container-fluid mt-2 background text-light text-center p-3">
+    <h1>Forgot Password Section</h1>
+</div>
+
+<div class="container-fluid w-100 h-50">
+    {% for i in messages %}
+        <div class="alert  alert-danger" role="alert">
+            {{i}}
+        </div>
+    {% endfor %}
+    <div class="container my-4" style="width: 700px;height: 600px;border-radius: 20px; box-shadow: 2px 2px 2px 3px;">
+        <div class="container p-3 rounded-circle" style="opacity: 0.9; ">
+            <div class="container my-5 p-0">
+                <img src="{% static 'images/profile.jpg' %}" class="w-25 h-25 d-block" alt="No image here" style="margin: 20px auto; border: 2px solid background; border-radius: 166rem;">
+            </div>
+            
+            <div class="container">
+
+                <form action="#" method="POST">
+                    {% csrf_token %}
+
+                    
+                    <div class="mb-4">
+                        <label for="exampleInputPassword1" class="form-label fs-4">Enter OTP</label>
+                        <input type="text" class="form-control fs-3" name="otp" id="exampleInputPassword1">
+                    </div>
+                    <div class="container-fluid" style="display: flex;">
+                    <button type="submit" class="btn btn-primary btn-lg d-block m-auto px-4 " title="">Submit</button>
+                   
+                </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "index.html" %}
+{% load cart %}
+{% load static %}
+{% block title %}
+<title>MyShop | Cart</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% endblock %}
+
+
+{% block body %}
+<div class="container-fluid mt-2 background text-light text-center p-3 my-3">
+  <h1>Cart Section</h1>
+</div>
+
+
+<div class="table-responsive">
+  <table class="table table-hover table-light table-striped">
+    <tr class="fs-5">
+      <th></th>
+      <th>Name</th>
+      <th>Color</th>
+      <th>Size</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total Price</th>
+      <th></th>
+    </tr>
+
+    {% for i in Products %}
+    <tr class="fs-5">
+      {% if i.pic1 %}
+      <td><img src={{i.pic1.url}} width="100px" height="100px" alt="No Image"></td>
+      {% else %}
+      <td><img src="{% static 'images/noimagep.png' %}" width="100px" height="100px" alt=""></td>
+      {% endif %}
+
+      <td class="py-5">{{i.name}}</td>
+      <td class="py-5">{{i.color}}</td>
+      <td class="py-5">{{i.size}}</td>
+      <td class="py-5">Rs {{i.finalPrice}}</td>
+      <td  class="py-5">  
+        <form action="#" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{i.id}}">
+          <input style="width: 25%;height: 65px;display: inline-block;" class="form-control fs-5" type="number" name="q" value="{{request | cartQuantity:i.id}}" min="1" width="50px">
+          <button class="btn background" type="submit"><i class="material-icons text text-center" style="font-size:45px;color:white;">upgrade</i></button>
+        </form>
+      </td>
+      <td class="py-5">Rs {{request |cartFinal:i.id}}</td>
+      <td class="py-5"><a href="/deleteCart/{{i.id}}/"><i class="material-icons text text-center" style="font-size:70px;color: lightslategray;">delete_forever</i></a></td>
+      
+    </tr>
+    {% endfor %}
+    <tr class="fs-5 fw-bolder">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Total</td>
+      <td></td>
+      <td>Rs {{Total}}</td>
+    </tr>
+    <tr class="fs-5 fw-bolder">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Shipping</td>
+      <td></td>
+      <td>Rs {{Shipping}}</td>
+    </tr>
+    <tr class="fs-5 fw-bolder">
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Final Amount</td>
+      <td></td>
+      <td>Rs {{Final}}</td>
+    </tr>
+    <tr class="fs-5 fw-bolder">
+      <td colspan="5"><a class="fs-5 fw-bolder btn background text-center text-light w-100" href="/shop/all/all/all/">Continue Shopping</a></td>
+      
+      
+      {% if Total %}
+        <td colspan="3"><a class="fs-5 fw-bolder btn background text-center text-light w-100" href="/checkout/">Checkout</a></td>
+      {% else %}
+        <td colspan="3"><a class="fs-5 fw-bolder disabled btn background text-center text-light w-100" href="">Checkout</a></td>
+      {% endif %}
+    </tr>
+  </table>
+</div>
+{% endblock %}

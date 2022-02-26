@@ -1,0 +1,214 @@
+{% extends "index.html" %}
+{% load cart %}
+{% load static %}
+
+{% block title %}
+<title>MyShop | Profile</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% endblock %}
+
+
+{% block body %}
+<div class="container-fluid mt-2 background text-light text-center p-3">
+  <h1>Buyer Profile Section</h1>
+</div>
+
+
+<div class="container-fluid my-5">
+  <div class="row">
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="container" style="margin-top: 15px;">
+        {% if User.pic %}
+        <img src={{User.pic.url}} class="img-fluid" style="height: 650px; width: 640px;" alt="">
+        {% else %}
+        <img src="{% static 'images/noimage.png' %}" class="img-fluid" style="height: 650px; width: 640px;" alt="">
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <table class="table table-light table-striped table-hover my-2 table">
+        <tr class="">
+          <th class="fw-bolder p-3"> Name </th>
+          <td class="fw-bold">{{User.name}}</td>
+        </tr>
+        <tr class="">
+          <th class="fw-bolder p-3">User Name </th>
+          <td class="fw-bold">{{User.username}}</td>
+        </tr>
+        <tr class="">
+          <th class="fw-bolder p-3"> Email Id </th>
+          <td class="fw-bold">{{User.email}}</td>
+        </tr>
+        <tr class="">
+          <th class="fw-bolder p-3"> Phone </th>
+          <td class="fw-bold">{{User.phone}}</td>
+        </tr>
+        <tr class="">
+          <th class="fw-bolder p-3"> Address Line 1 </th>
+          <td class="fw-bold">{{User.addressline1}}</td>
+        </tr>
+
+
+        <tr class="">
+          <th class="fw-bolder p-3"> Address Line 2 </th>
+          <td class="fw-bold">{{User.addressline2}}</td>
+        </tr>
+        <tr class="">
+          <th class="fw-bolder p-3"> Address Line 3 </th>
+          <td class="fw-bold">{{User.addressline3}}</td>
+        </tr>
+
+        <tr class="">
+          <th class="fw-bolder p-3"> Pin </th>
+          <td class="fw-bold">{{User.pin}}</td>
+        </tr>
+        <tr class="">
+          <th class="fw-bolder p-3"> City </th>
+          <td class="fw-bold">{{User.city}}</td>
+        </tr>
+        <tr class="">
+          <th class="fw-bolder p-3"> State </th>
+          <td class="fw-bold">{{User.state}}</td>
+        </tr>
+      </table>
+      <div class="container" style="width: 1000px;margin-right: 10px;">
+        <a href="/updateProfile/" class="btn btn-secondary fw-bold mt-4"
+          style="width: 600px;margin-right: 10px;">Update</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid background text-light p-3 my-5" style="display: flex;justify-content: center; text-shadow: 1px 1px 1px;">
+  <h1 class="mt-3">My Wishlist Section </h1>
+</div>
+
+
+<div class="table-responsive">
+  <table class="table table-hover table-light table-striped">
+    <tr class="fs-5">
+      <th></th>
+      <th>Name</th>
+      <th>Base Price</th>
+      <th>Discount</th>
+      <th>Final Price</th>
+      <th>Color</th>
+      <th>Size</th>
+      <th>Stock</th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    {% for i in Wishlist %}
+    <tr class="fs-5">
+      {% if i.product.pic1 %}
+      <td><img src={{i.product.pic1.url}} width="100px" height="100px" alt="No Image"></td>
+      {% else %}
+      <td><img src="{% static 'images/noimagep.png' %}" width="100px" height="100px" alt=""></td>
+      {% endif %}
+
+      <td class="py-5">{{i.product.name}}</td>
+      <td class="py-5">Rs {{i.product.baseprice}}</td>
+      <td class="py-5">{{i.product.discount}}%</td>
+      <td class="py-5">Rs {{i.product.finalPrice}}</td>
+      <td class="py-5">{{i.product.color}}</td>
+      <td class="py-5">{{i.product.size}}</td>
+      {% if i.product.stock %}
+      <td class="py-5">In Stock</td>
+      {% else %}
+      <td class="py-5">Not In Stock</td>
+      {% endif %}
+      <td class="py-5"><a href="/product/{{i.product.id}}/"><i class="material-icons text text-center" style="font-size:45px;color:background;">shopping_cart</i></a></td>
+      <td class="py-5"><a href="/deleteWishlist/{{i.id}}/"><i class="material-icons text text-center" style="font-size:45px;color:background;">delete_forever</i></a></td>
+      
+    </tr>
+    {% endfor %}
+  </table>
+
+
+
+
+
+
+
+
+
+  <div class="container-fluid background text-light p-3 my-5" style="display: flex;justify-content: center; text-shadow: 1px 1px 1px;">
+    <h1 class="mt-3">Order History Section </h1>
+  </div>
+  
+  
+  <div class="table-responsive">
+
+    <table class="table table-hover table-light table-striped">
+      <tr class="fs-5">
+        <th>ID</th>
+        <th>Items</th>
+        <th>Payment Mode</th>
+        <th>Payment Status</th>
+        <th>Order Status</th>
+        <th></th>
+        <th></th>
+        
+      </tr>
+      {% for i in Checkout %}
+      <tr>
+        <td>{{i.id}}</td>
+        <td>
+          <div class="table-responsive">
+          <table class=" table table-hover table-primary table-striped">
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Color</th>
+              <th>Size</th>
+              <!-- <th></th> -->
+              
+            </tr>
+              
+              {% for item in i.products|products  %}
+              <tr>
+
+                {% if item.pic1 %}
+                    <td><img src={{item.pic1.url}} width="50px" height="50px" alt="No Image"></td>
+                {% else %}
+                    <td><img src="{% static 'images/noimagep.png' %}" width="50px" height="50px" alt=""></td>
+                {% endif %}
+
+                <td class="p-1" colspan="1">{{item.name}}</td>
+                <td class="p-1">{{item.finalPrice}}</td>
+                <td class="p-1">{{item.color}}</td>
+                <td class="p-1">{{item.size}}</td>
+                <!-- <td class="p-1"><a class="btn btn-success fs-6 fw-bold" href="">Buy Again</a></td> -->
+              </tr>
+              {% endfor %}
+             
+        
+          </table>
+        </div>
+        </td>
+        <td>{{i.mode|paymentmode}}</td>
+        <td>{{ request | paymentStatus:i.paymentStatus }}</td>
+        <td>{{ request | orderStatus:i.status }}</td>
+
+        {% if i.mode|checkoutdelete %}
+        <td class="py-5"><a href="/paynow/{{i.id}}/"><i class="material-icons text text-center" style="font-size:35px;color:background;" title="Pay Now">credit_card</i></a></td>
+        {% else %}
+        <td></td>
+        {% endif %}
+
+        {% if i.mode|checkoutdelete %}
+        <td class="py-5"><a href="/checkoutDelete/{{i.id}}/"><i class="material-icons text text-center" style="font-size:35px;color:background;" title="Cancel Order">delete_forever</i></a></td>
+        {% else %}
+        <td></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+      
+    </table>
+    
+
+</div>
+{% endblock %}

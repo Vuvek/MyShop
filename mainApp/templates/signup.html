@@ -1,0 +1,74 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+<title>MyShop | Shop</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="container-fluid mt-2 background text-light text-center p-3">
+    <h1>SignUP Section</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 my-5">
+            <div class="container mt-2">
+                <img src="{% static 'images/signup.jpg' %}" class="img-fluid" style="height: 750px; width: 640px;"
+                    alt="">
+            </div>
+        </div>
+        
+        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-5">
+            {% for i in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{i}}
+        </div>
+        {% endfor %}
+            <div class="container-fluid">
+                <form action="#" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="Name" class="form-label fs-4">Name</label>
+                        <input type="text" class="form-control fs-4" name="name" id="Name">
+
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="Username" class="form-label fs-4">User Name</label>
+                        <input type="text" class="form-control fs-4" name="username" id="Username">
+                    </div>
+                    <div class="mb-4">
+                        <label for="Phone" class="form-label fs-4">Phone</label>
+                        <input type="text" class="form-control fs-4" name="phone" id="Phone">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label fs-4">Email address</label>
+                        <input type="email" class="form-control fs-4" name="email" id="exampleInputEmail1">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="exampleInputPassword1" class="form-label fs-4">Password</label>
+                        <input type="password" class="form-control fs-4" name="password" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-4">
+                        <label for="actype" class="form-label fs-4">Acount Type</label>
+                        <select name="actype" id="actype" class="form-control fs-4">
+                            <option value="">Select</option>
+                            <option value="seller">Seller</option>
+                            <option value="buyer">Buyer</option>
+                        </select>
+                    </div>
+
+                    <button type="submit"
+                        class="btn background text-light fw-bolder btn-lg d-block m-auto px-4 mt-5 w-100">SignUP</button>
+                    <span class="fs-5 text-danger">Already User : </span>
+                    <a href="/login/" class="fs-5">Login</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

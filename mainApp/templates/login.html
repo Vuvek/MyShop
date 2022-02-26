@@ -1,0 +1,52 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+<title>MyShop | Shop</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="container-fluid mt-2 background text-light text-center p-3">
+    <h1>Login Section</h1>
+</div>
+
+<div class="container-fluid w-100 h-50">
+    {% for i in messages %}
+        <div class="alert  alert-danger" role="alert">
+            {{i}}
+        </div>
+    {% endfor %}
+    <div class="container my-4" style="width: 700px;height: 600px;border-radius: 20px; box-shadow: 2px 2px 2px 3px;">
+        <div class="container p-3 rounded-circle" style="opacity: 0.9; ">
+            <div class="container my-5 p-0">
+                <img src="{% static 'images/profile.jpg' %}" class="w-25 h-25 d-block" alt="No image here" style="margin: 20px auto; border: 2px solid background; border-radius: 166rem;">
+            </div>
+            
+            <div class="container" style="position: relative;">
+
+                <form action="#" method="POST">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label fs-4">User Name</label>
+                        <input type="text" class="form-control fs-3" id="username" name="username">
+                        
+                    </div>
+                    <div class="mb-4">
+                        <label for="exampleInputPassword1" class="form-label fs-4">Password</label>
+                        <input type="password" class="form-control fs-3" name="password" id="exampleInputPassword1">
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary btn-lg d-block m-auto px-4 ">Login</button>
+                    <span class="fs-5 text-danger">New User : </span>
+                    <a href="/signup/" class="fs-5">Sign Up</a>
+                    
+                    <a href="/forgotPassword/" class="fs-5" style="position: absolute;right: 1px; bottom: 5px;">Forgot Password</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+<title>MyShop | Shop</title>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid mt-2 background text-light text-center p-3">
+    <h1> Single Product Section</h1>
+  </div>
+
+<div class="container-fluid my-5">
+    <div class="row">
+        <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <div id="carouselExampleIndicators1" class="carousel slide mt-2  container-fluid" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="3"
+                    aria-label="Slide 4"></button>
+                </div>
+                <div class="carousel-inner ">
+                  <div class="carousel-item active">
+                    <img src={{product.pic1.url}} width="100%" height="500px" class="d-block" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src={{product.pic2.url}} width="100%" height="500px" class="d-block" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src={{product.pic3.url}} width="100%" height="500px" class="d-block" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src={{product.pic4.url}} width="100%" height="500px" class="d-block" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1"
+                  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1"
+                  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+
+              <div class="my-2 mx-3">
+                    <img src="{{product.pic1.url}}" alt="No Image" height="200px" width="130px" class="mx-1" >
+                    <img src="{{product.pic2.url}}" alt="No Image" height="200px" width="130px" class="mx-1" >
+                    <img src="{{product.pic3.url}}" alt="No Image" height="200px" width="130px" class="mx-1" >
+                    <img src="{{product.pic4.url}}" alt="No Image" height="200px" width="130px" c1ass="mx-2" >
+              </div>
+        </div>
+        <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <table class="table table-light table-striped table-hover my-2">
+              <tr class="">
+                <th class="fw-bolder p-3"> Name </th>
+                <td class="fw-bold">{{product.name}}</td>
+              </tr>
+              <tr class="">
+                <th class="fw-bolder p-3"> Main Category </th>
+                <td class="fw-bold">{{product.maincat.name}}</td>
+              </tr>
+              <tr class="">
+                <th class="fw-bolder p-3"> Sub Category </th>
+                <td class="fw-bold">{{product.subcat.name}}</td>
+              </tr>
+              <tr class="">
+                <th class="fw-bolder p-3"> Brand </th>
+                <td class="fw-bold">{{product.brand.name}}</td>
+              </tr>
+              <tr class="">
+                <th class="fw-bolder p-3"> Base Price </th>
+                <td class="fw-bold">Rs {{product.baseprice}}</td>
+              </tr>
+              <tr class="">
+                <th class="fw-bolder p-3"> Discount </th>
+                <td class="fw-bold">{{product.discount}}%</td>
+              </tr>
+              <tr class="">
+                <th class="fw-bolder p-3"> Final Price </th>
+                <td class="fw-bold">Rs {{product.finalPrice}}</td>
+              </tr>
+              <tr class="">
+                <th class="fw-bolder p-3"> Color </th>
+                <td class="fw-bold">{{product.color}}</td>
+              </tr>
+              <tr class="">
+                <th class="fw-bolder p-3"> Size </th>
+                <td class="fw-bold">{{product.size}}</td>
+              </tr>
+              <tr class="">
+                <th class="fw-bolder p-3"> Description </th>
+                <td class="fw-bold">{{product.description}}</td>
+              </tr>
+              <tr class="">
+                <th class="fw-bolder p-3"> Stock </th>
+                {% if product.stock %}
+                <td class="fw-bold">In Stock</td>
+                {% else %}
+                <td class="fw-bold">Out Stock</td>
+                {% endif %}
+              </tr>
+              <tr class="">
+                <form action="#" method="POST">
+                  {% csrf_token %}
+                    <th class="fw-bolder p-3">
+                    <input type="number" name="q" class="form-control w-75" min="1" value="1">
+                  </th>
+                  <td class="fw-bold">
+                    <button type="submit" class="btn btn-secondary fw-bold my-2">Add To Cart</button>
+                    <a href="/wishlistPage/{{product.id}}/" class="btn btn-secondary mx-2 fw-bold">Add To WishList</a>
+                  </td>
+                  </form>
+              </tr>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

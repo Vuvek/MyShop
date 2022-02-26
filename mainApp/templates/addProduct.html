@@ -1,0 +1,149 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+<title>MyShop | Add Product</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="container-fluid mt-2 background text-light text-center p-3">
+    <h1>Add Product Section</h1>
+</div>
+
+<div class="container my-5">
+
+    <div class="container-fluid">
+        <form action="#" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3 fw-bolder">
+                <label for="Name" class="form-label fs-5">Name</label>
+                <input type="text" class="form-control fs-5" name="name" id="Name" value="{{User.name}}">
+            </div>
+
+            <div class="row my-4 fw-bolder">
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="mb-3">
+                        <label for="Name" class="form-label fs-5">Main Category</label>
+                        <select name="maincategory" id="" class="form-control">
+                            {% for i in Maincat %}
+                            <option value={{i.name}}>{{i.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="mb-3">
+                        <label for="Name" class="form-label fs-5">Sub Category</label>
+                        <select name="subcategory" id="" class="form-control">
+                            {% for i in Subcat %}
+                            <option value={{i.name}}>{{i.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="mb-3">
+                        <label for="Name" class="form-label fs-5">Brand</label>
+                        <select name="brand" id="" class="form-control">
+                            {% for i in Brand %}
+                            <option value={{i.name}}>{{i.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+
+                    <div class="mb-3">
+                        <label for="Name" class="form-label fs-5">Stock</label>
+                        <select name="stock" id="" class="form-control">
+
+                            <option value="True">In Stock</option>
+                            <option value="False">Not IN Stock</option>
+
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row my-4 fw-bolder">
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-3">
+                        <label for="baseprice" class="form-label fs-5">Baseprice</label>
+                        <input type="number" min="1" class="form-control fs-5" name="baseprice" id="baseprice"
+                            value="{{User.baseprice}}">
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-3">
+                        <label for="discount" class="form-label fs-5">Discount</label>
+                        <input type="number" min="1" class="form-control fs-5" name="discount" id="discount"
+                            value="{{User.discount}}">
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-3">
+                        <label for="color" class="form-label fs-5">Color</label>
+                        <input type="text" min="1" class="form-control fs-5" name="color" id="color"
+                            value="{{User.color}}">
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-3">
+                        <label for="size" class="form-label fs-5">Size</label>
+                        <input type="text" min="1" class="form-control fs-5" name="size" id="size"
+                            value="{{User.size}}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="fw-bolder">
+                <label class="form-label fs-5" for="description">Description</label>
+                <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
+            </div>
+            <div class="row my-4 fw-bolder">
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-4">
+                        <label for="pic1" class="form-label fs-5">Picture 1</label>
+                        <input type="file" class="form-control fs-5" name="pic1" id="pic1" value="{{User.pic1}}">
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-4">
+                        <label for="pic2" class="form-label fs-5">Picture 2</label>
+                        <input type="file" class="form-control fs-5" name="pic2" id="pic2" value="{{User.pic2}}">
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-4">
+                        <label for="pic3" class="form-label fs-5">Picture 3</label>
+                        <input type="file" class="form-control fs-5" name="pic3" id="pic3" value="{{User.pic3}}">
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                    <div class="mb-4">
+                        <label for="pic4" class="form-label fs-5">Picture 4</label>
+                        <input type="file" class="form-control fs-5" name="pic4" id="pic4" value="{{User.pic4}}">
+                    </div>
+                </div>
+            </div>
+
+
+
+                <button type="submit"
+                    class="btn background text-light fw-bolder btn-lg d-block m-auto px-4 my-3 w-100">Update</button>
+                <!-- <span class="fs-5 text-danger">Already User : </span>
+                    <a href="/login/" class="fs-5">Login</a> -->
+        </form>
+    </div>
+
+</div>
+{% endblock %}

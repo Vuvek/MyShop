@@ -1,0 +1,129 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+<title>MyShop | Profile</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% endblock %}
+
+
+{% block body %}
+<div class="container-fluid mt-2 background text-light text-center p-3">
+  <h1>Seller Profile Section</h1>
+</div>
+
+
+<div class="container-fluid my-5">
+  <div class="row">
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="container" style="margin-top: 15px;">
+        {% if User.pic %}
+        <img src={{User.pic.url}} class="img-fluid" style="height: 650px; width: 640px;" alt="">
+        {% else %}
+        <img src="{% static 'images/noimage.png' %}" class="img-fluid" style="height: 650px; width: 640px;" alt="">
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <table class="table table-light table-striped table-hover my-2 table">
+        <tr class="">
+          <th class="fw-bolder p-3"> Name </th>
+          <td class="fw-bold">{{User.name}}</td>
+        </tr>
+        <tr class="">
+          <th class="fw-bolder p-3">User Name </th>
+          <td class="fw-bold">{{User.username}}</td>
+        </tr>
+        <tr class="">
+          <th class="fw-bolder p-3"> Email Id </th>
+          <td class="fw-bold">{{User.email}}</td>
+        </tr>
+        <tr class="">
+          <th class="fw-bolder p-3"> Phone </th>
+          <td class="fw-bold">{{User.phone}}</td>
+        </tr>
+        <tr class="">
+          <th class="fw-bolder p-3"> Address Line 1 </th>
+          <td class="fw-bold">{{User.addressline1}}</td>
+        </tr>
+
+
+        <tr class="">
+          <th class="fw-bolder p-3"> Address Line 2 </th>
+          <td class="fw-bold">{{User.addressline2}}</td>
+        </tr>
+        <tr class="">
+          <th class="fw-bolder p-3"> Address Line 3 </th>
+          <td class="fw-bold">{{User.addressline3}}</td>
+        </tr>
+
+        <tr class="">
+          <th class="fw-bolder p-3"> Pin </th>
+          <td class="fw-bold">{{User.pin}}</td>
+        </tr>
+        <tr class="">
+          <th class="fw-bolder p-3"> City </th>
+          <td class="fw-bold">{{User.city}}</td>
+        </tr>
+        <tr class="">
+          <th class="fw-bolder p-3"> State </th>
+          <td class="fw-bold">{{User.state}}</td>
+        </tr>
+      </table>
+      <div class="container" style="width: 1000px;margin-right: 10px;">
+        <a href="/updateProfile/" class="btn btn-secondary fw-bold mt-4"
+          style="width: 600px;margin-right: 10px;">Update</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-fluid background text-light p-3 my-5" style="display: flex;justify-content: center; text-shadow: 1px 1px 1px;">
+  <h1 class="mt-3">My Product Section </h1>
+  <a href="/addProduct/"><i class="material-icons text text-center text-light" style="font-size:70px;color:red;">add_circle_outline</i></a>
+</div>
+
+
+<div class="table-responsive">
+  <table class="table table-hover table-light table-striped">
+    <tr class="fs-5">
+      <th></th>
+      <th>Name</th>
+      <th>Base Price</th>
+      <th>Discount</th>
+      <th>Final Price</th>
+      <th>Color</th>
+      <th>Size</th>
+      <th>Stock</th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    {% for i in Products %}
+    <tr class="fs-5">
+      {% if i.pic1 %}
+      <td><img src={{i.pic1.url}} width="100px" height="100px" alt=""></td>
+      {% else %}
+      <td><img src="{% static 'images/noimagep.png' %}" width="100px" height="100px" alt=""></td>
+      {% endif %}
+
+      <td class="py-5">{{i.name}}</td>
+      <td class="py-5">Rs {{i.baseprice}}</td>
+      <td class="py-5">{{i.discount}}%</td>
+      <td class="py-5">Rs {{i.finalPrice}}</td>
+      <td class="py-5">{{i.color}}</td>
+      <td class="py-5">{{i.size}}</td>
+      {% if i.stock %}
+      <td class="py-5">In Stock</td>
+      {% else %}
+      <td class="py-5">Not In Stock</td>
+      {% endif %}
+      <td class="py-5"><a href="/editProduct/{{i.id}}/"><i class="material-icons text text-center" style="font-size:45px;color:background;">edit</i></a></td>
+      <td class="py-5"><a href="/deleteProduct/{{i.id}}/"><i class="material-icons text text-center" style="font-size:45px;color:background;">delete_forever</i></a></td>
+      
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+<title>MyShop | Shop</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="container-fluid mt-2 background text-light text-center p-3">
+    <h1>Contact Us Section</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 my-5">
+            <div class="container-fluid mt-2" style="height:350px;">
+                <!-- <div class="mapouter"><div class="gmap_canvas"><iframe width="1430px" height="450px" id="gmap_canvas" src="https://maps.google.com/maps?q=Vijay%20Nagar%20Ghaziabad&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-to.org">123 movies</a><br><style>.mapouter{position:relative;text-align:right;max-height:auto;max-width:auto;}</style><a href="https://www.embedgooglemap.net">google maps embed iframe</a><style>.gmap_canvas {overflow:scroll;background:none!important;height:450px;width:1430px;}</style></div></div> -->
+
+
+
+                    <div class="gmap_canvas"><iframe width="100%" height="100%" id="gmap_canvas"
+                            src="https://maps.google.com/maps?q=Vijay%20Nagar%20Ghaziabad&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                            frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a
+                            href="https://putlocker-is.org"></a><br>
+                        <style>
+                            .mapouter {
+                                position: relative;
+                                text-align: right;
+                                height: 100%;
+                                width: 100%;
+                            }
+                        </style>
+                        <style>
+                            .gmap_canvas {
+                                overflow: hidden;
+                                background: none !important;
+                                height: 100%;
+                                width: 100%;
+                            }
+                        </style>
+                    </div>
+                
+            </div>
+        </div>
+        
+        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 my-5">
+            {% for i in messages %}
+        <div class="alert alert-success" role="alert">
+            {{i}}
+        </div>
+        {% endfor %}
+            <div class="container-fluid">
+                <form action="#" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="Name" class="form-label fs-4 fw-bolder">Name</label>
+                        <input type="text" class="form-control fs-4" name="name" id="Name">
+
+                    </div>
+
+                  
+                    <div class="mb-4">
+                        <label for="Phone" class="form-label fs-4 fw-bolder">Phone</label>
+                        <input type="text" class="form-control fs-4" name="phone" id="Phone">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label fs-4 fw-bolder">Email address</label>
+                        <input type="email" class="form-control fs-4" name="email" id="exampleInputEmail1">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="exampleInputPassword1" class="form-label fs-4 fw-bolder">Subject</label>
+                        <input type="text" class="form-control fs-4" name="subject">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="exampleInputPassword1" class="form-label fs-4 fw-bolder">Message</label>
+                        <textarea name="message" class="form-control fs-4" cols="30" rows="4"></textarea>
+                    </div>
+                   
+
+                    <button type="submit"
+                        class="btn background text-light fw-bolder btn-lg d-block m-auto px-4 mt-5 w-100">Send</button>
+                   
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div class="container-fluid">
+                        <div class="card-body text-center background text-light">
+                          <h5 class="card-title">mysite.com</h5>
+                          <h5 class="card-title">Contact : 9873848046</h5>
+                          <h5 class="card-title">Email : mysite@gmail.com</h5>
+                        </div>
+                      </div>
+
+{% endblock %}
